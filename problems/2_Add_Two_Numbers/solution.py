@@ -13,7 +13,8 @@ class Solution:
         head: Union[ListNode, None] = None
         carry: int = 0
         while(True):
-            new_return_node = ListNode(int((l1.val + l2.val + carry) % 10), None)
+            new_return_node = ListNode(
+                int((l1.val + l2.val + carry) % 10), None)
             carry = int((l1.val + l2.val + carry)/10)
             if(return_list is None):
                 return_list = head = new_return_node
