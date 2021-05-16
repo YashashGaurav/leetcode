@@ -1,8 +1,3 @@
-# Definition for singly-linked list.
-
-from typing import List, Union
-
-
 class Solution0:
     def lengthOfLongestSubstring(self, s: str) -> int:
         char_dict = {}
