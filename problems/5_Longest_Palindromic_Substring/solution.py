@@ -18,7 +18,7 @@ class Solution:
                     ):
                         dp_store[start][end] = 1
                         if len(max_palindrome) < end - start + 1:
-                            max_palindrome = input_string[start : end + 1]
+                            max_palindrome = input_string[start: end + 1]
 
         return max_palindrome
 
