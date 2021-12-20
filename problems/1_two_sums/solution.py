@@ -8,8 +8,9 @@ class Solution:
             if target - num1 in ref_table:
                 return [ref_table[target - num1], i]
             else:
-                ref_table[num1] = i;
+                ref_table[num1] = i
         return [0, 0]
 
+
 solution = Solution()
-print(solution.twoSum([3,2,4], 6))
+print(solution.twoSum([3, 2, 4], 6))
