@@ -1,47 +1,35 @@
-from math import floor
+import numpy as np
 
 
 class Solution:
-    def longestPalindrome(self, s: str) -> str:
+    def longestPalindrome(self, input_string: str) -> str:
 
-        char_dict = {}
-        for index, char in enumerate(s):
-            if char in char_dict:
-                char_dict[char] += [index]
-            else:
-                char_dict[char] = [index]
+        string_length = len(input_string)
+        dp_store = np.zeros((string_length, string_length), dtype=int)
 
-        def is_palindrome(string: str, start: int, end: int) -> bool:
-            check_counts = floor((end - start + 1) / 2) - 1
-            check_index = start + 1
-            while check_counts > 0:
-                if string[check_index] != string[end - (check_index - start)]:
-                    return False
-                check_counts -= 1
-                check_index += 1
-            return True
-
-        max_palindrome: str = ""
-        for char in char_dict:
-            for i in range(len(char_dict[char])):
-                j = len(char_dict[char]) - 1
-                while j >= i:
-                    if is_palindrome(
-                        s, char_dict[char][i], char_dict[char][j]
-                    ) and len(max_palindrome) < (
-                        char_dict[char][j] - char_dict[char][i] + 1
+        max_palindrome: str = input_string[string_length - 1]
+        for start in range(string_length - 1, -1, -1):
+            for end in range(start, string_length, 1):
+                if input_string[start] == input_string[end]:
+                    if (
+                        end == start
+                        or end - start == 1
+                        or dp_store[start + 1][end - 1] == 1
                     ):
-                        max_palindrome = s[char_dict[char][i]: char_dict[char][j] + 1]
-                        break
-                    j -= 1
+                        dp_store[start][end] = 1
+                        if len(max_palindrome) < end - start + 1:
+                            max_palindrome = input_string[start : end + 1]
 
         return max_palindrome
 
 
-# print(Solution().longestPalindrome("babad"))  # bab
-# print(Solution().longestPalindrome("cbbd"))  # bb
-# print(Solution().longestPalindrome("a"))  # a
-# print(Solution().longestPalindrome("ac"))  # a
-# print(Solution().longestPalindrome("abcdcbabab"))  # abcdcba
-# print(Solution().longestPalindrome("aacabdkacaa"))  # aca
-print(Solution().longestPalindrome("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))  # aca
+print(Solution().longestPalindrome("bb"))  # bb
+print(Solution().longestPalindrome("babad"))  # bab
+print(Solution().longestPalindrome("cbbd"))  # bb
+print(Solution().longestPalindrome("a"))  # a
+print(Solution().longestPalindrome("ac"))  # a
+print(Solution().longestPalindrome("abcdcbabab"))  # abcdcba
+print(Solution().longestPalindrome("aacabdkacaa"))  # aca
+print(
+    Solution().longestPalindrome("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+)  # aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
