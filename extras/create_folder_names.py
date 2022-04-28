@@ -8,7 +8,7 @@ def runner(problem_title: str):
     '''
     folder_name = ""
 
-    for s in "121: Best Time to Buy and Sell Stock":
+    for s in problem_title:
         if s.isalnum():
             folder_name += s
         if s == " ":
@@ -28,4 +28,4 @@ def runner(problem_title: str):
         """)
 
 
-runner("121. Best Time to Buy and Sell Stock")
+runner("20. Valid Parentheses")
