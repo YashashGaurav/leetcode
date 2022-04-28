@@ -25,7 +25,8 @@ def runner(problem_title: str):
         f.write(f"""'''
     {problem_title}
 '''
-        """)
+
+""")
 
 
-runner("20. Valid Parentheses")
+runner("question_title_here")
