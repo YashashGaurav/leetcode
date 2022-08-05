@@ -3,31 +3,23 @@
 """
 
 
-class Solution:  # Accepted	7277 ms	14.8 MB
+class Solution0:
+    def unique_letters_in(self, s: str) -> int:
+        unique_store = set()
+        dup_store = set()
+        for char in s:
+            if char in unique_store:
+                dup_store.add(char)
+            else:
+                unique_store.add(char)
+        return len(unique_store) - len(dup_store)
+
     def uniqueLetterString(self, s: str) -> int:
-
-        left = 0
-        right = 0
-        ret_sum = 0
-
-        for i in range(len(s)):
-            j = i - 1
-            while j >= 0:
-                if s[i] == s[j]:
-                    break
-                j -= 1
-            left = i - j
-
-            j = i + 1
-            while j < len(s):
-                if s[i] == s[j]:
-                    break
-                j += 1
-            right = j - i
-
-            ret_sum += right * left
-
-        return ret_sum
+        uniqueCount = 0
+        for i in range(1, len(s) + 1):
+            for j in range(len(s) - i + 1):
+                uniqueCount += self.unique_letters_in(s[j : i + j])
+        return uniqueCount
 
 
 class Solution1:  # Accepted	606 ms	18.7 MB
@@ -63,23 +55,31 @@ class Solution1:  # Accepted	606 ms	18.7 MB
         return unique_sum
 
 
-class Solution0:
-    def unique_letters_in(self, s: str) -> int:
-        unique_store = set()
-        dup_store = set()
-        for char in s:
-            if char in unique_store:
-                dup_store.add(char)
-            else:
-                unique_store.add(char)
-        return len(unique_store) - len(dup_store)
-
+class Solution:  # Accepted	7277 ms	14.8 MB
     def uniqueLetterString(self, s: str) -> int:
-        uniqueCount = 0
-        for i in range(1, len(s) + 1):
-            for j in range(len(s) - i + 1):
-                uniqueCount += self.unique_letters_in(s[j:i+j])
-        return uniqueCount
+
+        left = 0
+        right = 0
+        ret_sum = 0
+
+        for i in range(len(s)):
+            j = i - 1
+            while j >= 0:
+                if s[i] == s[j]:
+                    break
+                j -= 1
+            left = i - j
+
+            j = i + 1
+            while j < len(s):
+                if s[i] == s[j]:
+                    break
+                j += 1
+            right = j - i
+
+            ret_sum += right * left
+
+        return ret_sum
 
 
 print(Solution().uniqueLetterString("ABC"))
