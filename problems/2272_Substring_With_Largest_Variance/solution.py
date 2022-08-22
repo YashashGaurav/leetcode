@@ -4,6 +4,7 @@
 
 import itertools
 
+
 # Time Limit Exceeded
 class Solution0:
     def largestVariance(self, s: str) -> int:
