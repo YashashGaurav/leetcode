@@ -62,6 +62,7 @@ class Solution1:
 
         return ret_var
 
+
 # did not use max() - Passed.
 # Accepted	6118 ms	13.8 MB
 class Solution:
@@ -81,7 +82,7 @@ class Solution:
                     char_low_freq += 1
 
                 # resetting as per Kadane's
-                if char_low_freq > char_high_freq:    
+                if char_low_freq > char_high_freq:
                     char_high_freq = 0
                     char_low_freq = 0
                     abandoned_low_freq = True
@@ -92,7 +93,7 @@ class Solution:
                         ret_var = char_high_freq - char_low_freq
                 elif abandoned_low_freq:
                     if ret_var < (char_high_freq - 1):
-                        ret_var = char_high_freq - 1        
+                        ret_var = char_high_freq - 1
 
         return ret_var
 
