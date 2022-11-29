@@ -26,3 +26,28 @@ class Solution:
         
         return res
 
+
+# manual debugging
+# candidates = [2, 3, 5]
+# target = 7
+
+
+# dfs
+# can_pointer = 0
+# curr_sol = []
+# remaining_sum = 7
+#
+# dfs 
+# can_pointer = 0
+# curr_sol = [2]
+# remaining_sum = 5
+
+# dfs 
+# can_pointer = 0
+# curr_sol = [2, 2]
+# remaining_sum = 3
+
+# dfs 
+# can_pointer = 2
+# curr_sol = [2, 5]
+# remaining_sum = 0
