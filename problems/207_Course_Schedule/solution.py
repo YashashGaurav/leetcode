@@ -1,53 +1,43 @@
-'''
+"""
     207. Course Schedule
-'''
+"""
 from typing import List
 import collections
 
+
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        
+    def canFinish(
+        self, numCourses: int, prerequisites: List[List[int]]
+    ) -> bool:
+
         req = collections.defaultdict(list)
-        
-        
+
         for prereq in prerequisites:
             req[prereq[0]].append(prereq[1])
-            
-        
+
         def _can_finish(idx, visited):
-            
+
             if len(req[idx]) == 0:
                 return True
             elif idx in visited:
                 return False
-            
+
             visited.append(idx)
-            
+
             for course in req[idx]:
                 if not _can_finish(course, visited):
                     return False
-                    
+
             req[idx] = []
             return True
-            
-                
+
         for i in range(numCourses):
             if not _can_finish(i, []):
                 return False
-        
-        return True
-                
-            
-            
-        
-        
-        
-        
-        
-        
-        
 
-        
+        return True
+
+
 #
 # numCourses = 5
 # prerequisites = [
