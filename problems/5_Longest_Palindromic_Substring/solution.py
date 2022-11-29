@@ -2,7 +2,8 @@ import numpy as np
 
 
 class Solution:
-    def longestPalindrome(self, input_string: str) -> str:
+    # Accepted	3524 ms	14.4 MB
+    def longestPalindrome0(self, input_string: str) -> str:
 
         string_length = len(input_string)
         dp_store = np.zeros((string_length, string_length), dtype=int)
@@ -21,6 +22,30 @@ class Solution:
                             max_palindrome = input_string[start: end + 1]
 
         return max_palindrome
+
+    # neetcode style checking
+    # Accepted	1347 ms	13.9 MB
+    def longestPalindrome(self, s: str) -> str:
+        
+        res = ""
+        
+        for i in range(len(s)):
+            l, r = i, i
+            while l > -1 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > len(res):
+                    res = s[l: r+1]
+                l -= 1
+                r += 1
+                
+        for i in range(len(s)):
+            l, r = i, i+1
+            while l > -1 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > len(res):
+                    res = s[l: r+1]
+                l -= 1
+                r += 1
+            
+        return res
 
 
 print(Solution().longestPalindrome("bb"))  # bb
