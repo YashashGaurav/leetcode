@@ -1,8 +1,9 @@
-'''
+"""
     494. Target Sum
-'''
+"""
 
 from typing import List
+
 
 class Solution:
 
@@ -13,23 +14,21 @@ class Solution:
         dp = {}
 
         def dfs(idx, total):
-            if idx == arr_len: 
+            if idx == arr_len:
                 if target == total:
-                    return 1 
+                    return 1
                 return 0
-            
+
             if (idx, total) in dp:
                 return dp[(idx, total)]
 
-            dp[(idx, total)] = (
-                dfs(idx + 1, total + nums[idx]) + 
-                dfs(idx + 1, total - nums[idx])
+            dp[(idx, total)] = dfs(idx + 1, total + nums[idx]) + dfs(
+                idx + 1, total - nums[idx]
             )
 
             return dp[(idx, total)]
-        
-        return dfs(0, 0)
 
+        return dfs(0, 0)
 
 
 # [1, 1, 1, 1, 1], target = 3
