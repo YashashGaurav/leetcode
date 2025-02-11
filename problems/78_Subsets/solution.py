@@ -5,14 +5,21 @@ from typing import List
 
 class Solution:
 
-    # def subsets(self, nums: List[int]) -> List[List[int]]:
+    # backtracking - iteration
+    def subsets(self, nums: List[int]) -> List[List[int]]:
 
-    #     return_sets = [[]]
+        return_sets = [[]]
 
-    #     for index in range(len(nums)):
-            
+        for num in nums:
+            collection_set = []
+            for subset in return_sets:
+                temp_set = subset.copy()
+                collection_set.append(temp_set.copy())
+                temp_set.append(num)
+                collection_set.append(temp_set.copy())
+            return_sets = collection_set
 
-    #     return return_sets
+        return return_sets
 
     # backtracking - Trees
     def subsets_1(self, nums: List[int]) -> List[List[int]]:
