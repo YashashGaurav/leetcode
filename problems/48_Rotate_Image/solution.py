@@ -6,8 +6,27 @@ from typing import List
 
 
 class Solution:
-    # 0ms - Mem - Beats 41.96%
+    # 0ms - Mem - 98.99%
     def rotate(self, matrix: List[List[int]]) -> None:
+        left, right = 0, len(matrix) - 1
+
+        while left < right:
+            for i in range(right - left):
+                top, bottom = left, right
+
+                top_left_cache = matrix[top][left + i]
+                matrix[top][left + i] = matrix[bottom - i][left]
+                matrix[bottom - i][left] = matrix[bottom][right - i]
+                matrix[bottom][right - i] = matrix[top + i][right]
+                matrix[top + i][right] = top_left_cache
+
+            left += 1
+            right -= 1
+
+        return matrix
+
+    # 0ms - Mem - Beats 41.96%
+    def rotate_0(self, matrix: List[List[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """
