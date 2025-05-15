@@ -1,0 +1,7 @@
+[project]
+name = "leetcode"
+version = "0.1.0"
+description = "My Leetcode practice codebase"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["ruff>=0.11.9"]
